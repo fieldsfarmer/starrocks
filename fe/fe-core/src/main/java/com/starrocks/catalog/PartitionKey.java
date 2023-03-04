@@ -88,9 +88,6 @@ public class PartitionKey implements Comparable<PartitionKey>, Writable {
     public static PartitionKey createShadowPartitionKey(List<Column> columns) {
         PartitionKey partitionKey = new PartitionKey();
         for (Column column : columns) {
-<<<<<<< HEAD
-            partitionKey.keys.add(new DateLiteral(0, 1, 1));
-=======
             PrimitiveType primitiveType = column.getPrimitiveType();
             DateLiteral shadowLiteral;
             switch (primitiveType) {
@@ -104,7 +101,6 @@ public class PartitionKey implements Comparable<PartitionKey>, Writable {
                     throw new AnalysisException("Unsupported shadow partition type:" + primitiveType);
             }
             partitionKey.keys.add(shadowLiteral);
->>>>>>> 54a22a342 ([Refactor] Adapt to the new shadow partition (#18803))
             partitionKey.types.add(column.getPrimitiveType());
         }
         return partitionKey;
